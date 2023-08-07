@@ -1,0 +1,136 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Victor Mono', monospace, sans-serif;
+  background:transparent;
+}
+.text-black:hover{
+  background: #ffff;
+  transition: 0.4s ease;
+}
+.img-nav{
+  mix-blend-mode: multiply;
+  width: 50px;
+}
+
+.redesocial{
+  width:100%;
+  text-align: center;
+  background: yellow;
+  color: black;
+}
+.socialmedia{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.instagram{
+  width: 15%;
+}
+.sobre{
+  gap:10px;
+}
+
+.about{
+  width:100%;
+  text-align: center;
+  background: yellow;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.aboutme, .example-fade-text{
+  color: #F0E68C;
+  margin: 10px;
+  padding: 1.5em;
+  display: grid;
+  background: transparent;
+  transition: background-color 0.5s ease;
+}
+
+.example-fade-text{
+  background: linear-gradient(to bottom ,rgb(248, 234, 88),rgb(39, 80, 80));
+  color: #f4f4f4;
+  font-size: 1.2em;
+  box-shadow: 1px 5px blue;
+}
+.home{
+  width:100%;
+  text-align: center;
+  background: yellow;
+  color: black;
+  gap: 17px;
+  margin-top: 90px;
+}
+
+.contato{
+  width:100%;
+  text-align: center;
+  background: yellow;
+  color: black;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.formu{
+  display:flex;
+  flex-direction: column;
+}
+
+.form{
+  display:grid;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(to bottom ,rgb(248, 234, 88),rgb(39, 80, 80));
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 1.2em;
+}
+
+.input-message{
+  width: 100%;
+  heigth: 100px;
+  border: 1px solid;
+}
+
+.button{
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+button:hover{
+  background-color: yellow;
+  animation: pulsate 1s infinite;
+  box-shadow: inset 1px;
+}
+
+input, textarea{
+  border-radius: 5px;
+  background: white;
+}
+
+
+footer{
+  align-items: center;
+  text-align: center;
+  background-color: #f444;
+  border-radius: 5px;
+  border: 1px solid;
+}
+
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
