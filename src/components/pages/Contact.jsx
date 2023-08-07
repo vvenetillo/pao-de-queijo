@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2';
 import { useState } from 'react';
 
+import style from '../style/Contact.module.css'
+
 export default function Contact() {
     // Backend
     const [formData, setFormData] = useState({
@@ -50,17 +52,17 @@ export default function Contact() {
 
     return (
       <div>
-        <h3 id="contato" className="contato">
+        <h3 id="contato" className={style.contato}>
           Contato
         </h3>
 
-        <div className="Formu">
+        <div className={style.Formu}>
           <form
             onSubmit={handleSubmit}
             action="http://localhost:3000/usuarios"
             method="POST"
             id="form"
-            className="form"
+            className={style.form}
           >
             <label htmlFor="fname">Nome:</label>
             <input
@@ -109,7 +111,7 @@ export default function Contact() {
 
             <label>Mensagem:</label>
             
-              <textarea className='input-message'
+              <textarea className={style.input_message}
                name="fmensagem" 
                id="fmensagem" 
                value={formData.fmensagem}
@@ -118,7 +120,7 @@ export default function Contact() {
           
 
             <button type="submit"
-              className="button"
+              className={style.button}
               onClick={sweet}
             >
               Enviar

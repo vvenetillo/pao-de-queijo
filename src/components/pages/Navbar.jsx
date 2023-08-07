@@ -1,5 +1,7 @@
 import { Navbar, Nav } from 'react-bootstrap';
 
+import style from '../style/Navbar.module.css'
+
 import logo from '../../img/logo.jpg'
 
 function JustifiedExample() {
@@ -9,19 +11,19 @@ function JustifiedExample() {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mx-auto justify-content-around" style={{ width: "80%" }}>
         <Nav.Item>
-            <Nav.Link  to="/"><img src={logo} className="img-nav" alt='logo navbar'/></Nav.Link>
+            <Nav.Link  to="/"><img src={logo} className={style.img_nav} alt='logo navbar'/></Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-black" to="/contact">Home</Nav.Link>
+            <Nav.Link className={style.text_black} href="#home">Home</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-black" href="#about">Sobre nós</Nav.Link>
+            <Nav.Link className={style.text_black} href="#about">Sobre nós</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-black" href="#redesocial">Rede Social</Nav.Link>
+            <Nav.Link className={style.text_black} href="#redesocial">Rede Social</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="text-black" href="#contato">Contato</Nav.Link>
+            <Nav.Link className={style.text_black} href="#contato">Contato</Nav.Link>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
