@@ -27,12 +27,12 @@
   .foto{
     text-align: center;
     align-items: center;
-    margin-left: 620px;
+    margin-left: 650px;
   }
 
-  @media(max-width:620px){
+  @media(max-width:570px){
     .foto{
-      margin-left: 90px;
+      margin-left: 130px;
     }
   }
   
