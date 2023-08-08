@@ -27,7 +27,7 @@
   .foto{
     text-align: center;
     align-items: center;
-    margin-left: 620px;
+    margin-left: 300px;
   }
 
   @media(max-width:620px){
