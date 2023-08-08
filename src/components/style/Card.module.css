@@ -1,0 +1,53 @@
+.logo{
+    width: 100%;
+}
+
+@media (max-width:620px){
+    .logo{
+        heigth: 100%;
+    }
+}
+
+.home{
+    width:100%;
+    text-align: center;
+    background: #FFBF00;
+    color: black;
+    gap: 17px;
+    margin-top: 90px;
+  }
+
+  .about{
+    width:100%;
+    text-align: center;
+    background: #FFBF00;
+    color: black;
+    margin-bottom: 10px;
+  }
+  .foto{
+    text-align: center;
+    align-items: center;
+    margin-left: 620px;
+  }
+
+  @media(max-width:620px){
+    .foto{
+      margin-left: 120px;
+    }
+  }
+  
+  .aboutme, .example_fade_text{
+    color: #F0E68C;
+    margin: 10px;
+    padding: 1.5em;
+    display: grid;
+    background: transparent;
+    transition: background-color 0.5s ease;
+  }
+  
+  .example_fade_text{
+    background: linear-gradient(to bottom ,rgb(390, 934, 188),rgb(339, 180, 88));
+    color: #111111;
+    font-size: 1.1em;
+    box-shadow: 1px 5px blue;
+  }
