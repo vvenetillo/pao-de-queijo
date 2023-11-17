@@ -5,7 +5,7 @@ import axios from "axios";
 import style from "../style/Contact.module.css";
 
 const api = axios.create({ 
-  baseURL: "http://localhost:3001"
+  baseURL: "https://cariocapaodequeijo.netlify.app"
 });
 
 export default function Contact() {
@@ -66,7 +66,7 @@ export default function Contact() {
       <div className={style.Formu}>
         <form
           onSubmit={handleSubmit}
-          action="http://localhost:3001/contact"
+          action="https://cariocapaodequeijo.netlify.app/#contato"
           method="POST"
           id="form"
           className={style.form}
