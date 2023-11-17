@@ -44,16 +44,18 @@ export default function Contact() {
     });
   };
   
+  
 
   const sweet = () => {
-    Swal.fire("Bom Trabalho!", "Seu Formulário foi enviado", "success").then(
+    Swal.fire("Bom Trabalho!", "Seu Formulário foi enviado", "success" ).then(
       (res) => {
-        if (res.isConfirmed) {
+        if ( res.isConfirmed !== "") {
           window.location.reload();
         }
-      }
-    );
+      } 
+    )
   };
+  
 
   return (
     <div>
