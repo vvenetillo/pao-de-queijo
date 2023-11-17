@@ -1,3 +1,3 @@
 [build]
 command = "npm start" 
-publish = "/backend index.js"
+publish = "nodemon backend/index.js"
