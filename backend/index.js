@@ -22,7 +22,7 @@ let contacto = {
 }
 
 // rotas publicas
-  app.get('/contact',  (req, res) => { 
+  app.get('/#contact',  (req, res) => { 
   
     try{
     res.json(contacto.contacts);
@@ -32,7 +32,7 @@ let contacto = {
     }
   });
   
-  app.post('/contact', (req, res) => {
+  app.post('/#contact', (req, res) => {
     try{
 
       console.log(req.body);
@@ -49,14 +49,18 @@ let contacto = {
   
   const dbUdser = process.env.DB_USER;
   const dbPassword = process.env.DB_PASS;
-  
+  const port = process.env.PORT || 3001; // Use a porta fornecida pelo ambiente ou 3000 como padrão
+
+
+
   //conexão com o Banco de Dados MongoD
   mongoose
     .connect(
       `mongodb+srv://${dbUdser}:${dbPassword}@cluster0.a7o4it1.mongodb.net/paodequeijo?retryWrites=true&w=majority`
     )
     .then(() => {
-      app.listen(3001);
-      console.log("Conectou ao banco de dados");
+      app.listen(port, () => {
+        console.log(`Servidor está rodando na porta ${port}`);
+      });
     })
     .catch((err) => console.log(err));

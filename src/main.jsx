@@ -18,7 +18,7 @@ const router = createBrowserRouter ([
       element: <Navbar />,
       },
       {
-        path: "/contact",
+        path: "#contact",
         element: <Contact />,
         },
     ],
