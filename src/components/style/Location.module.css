@@ -1,0 +1,13 @@
+.location{
+    width:100%;
+    text-align: center;
+    background: #FFBF00;
+    color: black;
+  }
+
+.place{
+    width: 480px;
+    height: 350px;
+    margin: 0 auto;
+    display: flex;
+}

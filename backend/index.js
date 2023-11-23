@@ -22,7 +22,7 @@ let contacto = {
 }
 
 // rotas publicas
-  app.get('/#contact',  (req, res) => { 
+  app.get('/contact',  (req, res) => { 
   
     try{
     res.json(contacto.contacts);
@@ -32,7 +32,7 @@ let contacto = {
     }
   });
   
-  app.post('/#contact', (req, res) => {
+  app.post('/contact', (req, res) => {
     try{
 
       console.log(req.body);
@@ -60,7 +60,7 @@ let contacto = {
     )
     .then(() => {
       app.listen(port, () => {
-        console.log(`Servidor está rodando na porta ${port}`);
-      });
+          console.log(`Servidor está rodando na porta ${port}`);
+        });
     })
     .catch((err) => console.log(err));

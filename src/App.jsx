@@ -4,6 +4,7 @@ import Navbar from './components/pages/Navbar'
 import Card from './components/pages/Card'
 import Contact from './components/pages/Contact'
 import RedeSocial from './components/pages/RedeSocial'
+import Location from './components/pages/Location'
 
 
 import { Outlet } from 'react-router-dom'
@@ -18,6 +19,7 @@ function App() {
     <Card />
     <Outlet />
     <RedeSocial />
+    <Location />
     <Contact />
     <Footer />
    </div>

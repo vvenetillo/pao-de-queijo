@@ -4,59 +4,92 @@ import axios from "axios";
 
 import style from "../style/Contact.module.css";
 
-const api = axios.create({ 
-  baseURL: "https://cariocapaodequeijo.netlify.app"
+const api = axios.create({
+  baseURL: "https://cariocapaodequeijo.netlify.app",
 });
 
 export default function Contact() {
-  // Backend
+  const [formData, setFormData] = useState({
+    fname: "",
+    femail: "",
+    ftelefone: "",
+    fcidade: Number,
+    fmensagem: "",
+  });
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData)
-    api.post("/contact", formData)
+    console.log(formData);
+    api
+      .post("/contact", formData)
       .then((res) => {
         console.log(res);
-        sweet(); // Chama o SweetAlert após o envio bem-sucedido
+        sweet();
         window.location.reload();
       })
       .catch((error) => {
         console.error("Erro ao enviar o formulário:", error);
       });
-  }
-
-  // mudança de estado
-
-  const [formData, setFormData] = useState({
-    fname: "",
-    femail: "",
-    ftelefone: "",
-    fcidade: "",
-    fmensagem: "",
-  });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(formData)
+    console.log(formData);
     setFormData({
       ...formData,
       [name]: value,
     });
   };
-  
-  
 
   const sweet = () => {
-    Swal.fire("Bom Trabalho!", "Seu Formulário foi enviado", "success" ).then(
+    Swal.fire("Bom Trabalho!", "Seu Formulário foi enviado", "success").then(
       (res) => {
-        if ( res.isConfirmed !== "") {
+        if (res.isConfirmed !== "") {
           window.location.reload();
         }
-      } 
-    )
+      }
+    );
   };
-  
 
+  const [cep, setCep] = useState("");
+  const [endereco, setEndereco] = useState({
+    cep: "",
+    cidade: "",
+    bairro: "",
+    // Adicione mais campos conforme necessário
+  });
+  const [mostrarResultado, setMostrarResultado] = useState(false);
+
+  const consultarCEP = async () => {
+    try {
+      // Validação do cep
+      if (/^\d{5}-?\d{3}$/.test(cep)) {
+        const apiUrl = `https://viacep.com.br/ws/${cep}/json/`;
+        const response = await fetch(apiUrl);
+
+        if (response.ok) {
+          const data = await response.json();
+
+          console.log(data);
+          // Atualize o estado com os dados do CEP
+          setEndereco({
+            cep: data.cep,
+            cidade: data.localidade,
+            bairro: data.bairro,
+            
+          });
+          // funcão para o input do resultado
+          setMostrarResultado(true);
+        } else {
+          console.error("Erro ao consultar o CEP");
+        }
+      } else {
+        console.error("CEP inválido");
+      }
+    } catch (error) {
+      console.error("Erro ao processar a solicitação:", error);
+    }
+  };
   return (
     <div>
       <h3 id="contato" className={style.contato}>
@@ -66,7 +99,7 @@ export default function Contact() {
       <div className={style.Formu}>
         <form
           onSubmit={handleSubmit}
-          action="https://cariocapaodequeijo.netlify.app/#contato"
+          action="https://cariocapaodequeijo.netlify.app/contato"
           method="POST"
           id="form"
           className={style.form}
@@ -82,7 +115,7 @@ export default function Contact() {
             required
           />
           <br />
-          <label  htmlFor="femail">Email:</label>
+          <label htmlFor="femail">Email:</label>
           <input
             type="email"
             id="femail"
@@ -105,20 +138,36 @@ export default function Contact() {
           />
           <br />
 
-          <label htmlFor="fcidade">Cidade/Estado:</label>
+          <label htmlFor="fcidade">Cep:</label>
           <input
             type="text"
             id="fcidade"
             name="fcidade"
             placeholder="Cidade onde reside"
-            value={formData.fcidade}
-            onChange={handleChange}
+            value={cep}
+            onChange={(e) => {
+              setCep(e.target.value);
+            }}
             required
           />
+          <button onClick={consultarCEP}>Consultar cep</button>
+          {mostrarResultado && (
+        <div>
+          <h3>Dados do Endereço</h3>
+          <p>
+            <label>Bairro: </label>
+            <input type="text" readOnly value={endereco.bairro} />
+          </p>
+          <p>
+            <label>Cidade: </label>
+            <input type="text" readOnly value={endereco.cidade} />
+          </p>
+        </div>
+      )}
+
           <br />
 
           <label>Mensagem:</label>
-
           <textarea
             className={style.input_message}
             name="fmensagem"
@@ -128,10 +177,7 @@ export default function Contact() {
             required
           />
 
-          <button 
-          type="submit" 
-          className={style.button}
-          onClick={() => sweet (handleSubmit)} >
+          <button type="submit" className={style.button}>
             Enviar
           </button>
         </form>
