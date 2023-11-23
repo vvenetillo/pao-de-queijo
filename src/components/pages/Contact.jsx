@@ -46,6 +46,7 @@ export default function Contact() {
       (res) => {
         if (res.isConfirmed !== "") {
           window.location.reload();
+          
         }
       }
     );
