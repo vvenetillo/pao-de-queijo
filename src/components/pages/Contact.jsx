@@ -177,7 +177,10 @@ export default function Contact() {
             required
           />
 
-          <button type="submit" className={style.button}>
+          <button type="submit"
+          onClick={sweet}
+           className={style.button}
+           >
             Enviar
           </button>
         </form>
