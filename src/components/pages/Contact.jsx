@@ -124,10 +124,11 @@ export default function Contact() {
       <div className={style.Formu}>
         <form
           onSubmit={handleSubmit}
-          action="https://api-paodequeijo.netlify.app"
+          action="https://api-paodequeijo.netlify.app/contact"
           method="POST"
           id="form"
           className={style.form}
+          data-netlify="true"
         >
           <label htmlFor="fname">Nome:</label>
           <input
