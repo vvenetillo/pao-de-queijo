@@ -5,7 +5,7 @@ import axios from "axios";
 import style from "../style/Contact.module.css";
 
 const api = axios.create({
-  baseURL: "https://cariocapaodequeijo.netlify.app",
+  baseURL: "https://cariocapaodequeijo.netlify.app/",
 });
 
 export default function Contact() {
@@ -13,7 +13,9 @@ export default function Contact() {
     fname: "",
     femail: "",
     ftelefone: "",
-    fcidade: Number,
+    fcep: "",
+    fbairro: "",
+    fcidade: "",
     fmensagem: "",
   });
 
@@ -21,16 +23,35 @@ export default function Contact() {
     e.preventDefault();
     console.log(formData);
     api
-      .post("/contact", formData)
+      .post("/contact", {
+        // Outros campos do formulário
+        fname: formData.fname,
+        femail: formData.femail,
+        ftelefone: formData.ftelefone,
+        fcep: cep,
+        fcidade: endereco.cidade,
+        fbairro: endereco.bairro,
+        fmensagem: formData.fmensagem,
+      })
       .then((res) => {
         console.log(res);
         sweet();
+        setFormData({
+          fname: "",
+          femail: "",
+          ftelefone: "",
+          fcep: "",
+          fmensagem: "",
+          fcidade: "",
+          fbairro: ""
+        });
         window.location.reload();
       })
       .catch((error) => {
         console.error("Erro ao enviar o formulário:", error);
       });
   };
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +73,8 @@ export default function Contact() {
     );
   };
 
+
+  // parte de api do cep e o tratamento da mesma
   const [cep, setCep] = useState("");
   const [endereco, setEndereco] = useState({
     cep: "",
@@ -91,16 +114,17 @@ export default function Contact() {
       console.error("Erro ao processar a solicitação:", error);
     }
   };
+
   return (
     <div>
-      <h3 id="contato" className={style.contato}>
+      <h3 id="contato"  className={style.contato}>
         Contato
       </h3>
 
       <div className={style.Formu}>
         <form
           onSubmit={handleSubmit}
-          action="https://cariocapaodequeijo.netlify.app/contato"
+          action="https://cariocapaodequeijo.netlify.app/contact"
           method="POST"
           id="form"
           className={style.form}
@@ -139,11 +163,11 @@ export default function Contact() {
           />
           <br />
 
-          <label htmlFor="fcidade">Cep:</label>
+          <label htmlFor="fcep">Cep:</label>
           <input
             type="text"
-            id="fcidade"
-            name="fcidade"
+            id="fcep"
+            name="fcep"
             placeholder="Cidade onde reside"
             value={cep}
             onChange={(e) => {
@@ -156,12 +180,12 @@ export default function Contact() {
         <div>
           <h3>Dados do Endereço</h3>
           <p>
-            <label>Bairro: </label>
-            <input type="text" readOnly value={endereco.bairro} />
+            <label htmlFor="fbairro">Bairro: </label>
+            <input type="text" readOnly id="fbairro" name="fbairro" value={endereco.bairro} />
           </p>
           <p>
-            <label>Cidade: </label>
-            <input type="text" readOnly value={endereco.cidade} />
+            <label htmlFor="fcidade">Cidade: </label>
+            <input type="text" readOnly id="fcidade"  name= "fcidade" value={endereco.cidade} />
           </p>
         </div>
       )}
@@ -187,5 +211,5 @@ export default function Contact() {
         </form>
       </div>
     </div>
-  );
+  ) ;
 }

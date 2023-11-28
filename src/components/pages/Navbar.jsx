@@ -23,7 +23,7 @@ function JustifiedExample() {
             <Nav.Link className={style.text_black} href="#redesocial">Rede Social</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className={style.text_black} href="#contato">Contato</Nav.Link>
+            <Nav.Link  className={style.text_black} href="#contato">Contato</Nav.Link>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
