@@ -23,7 +23,7 @@ export default function Contact() {
     e.preventDefault();
     console.log(formData);
     api
-      .post("/contact", {
+      .post("/", {
         // Outros campos do formulário
         fname: formData.fname,
         femail: formData.femail,
@@ -124,7 +124,7 @@ export default function Contact() {
       <div className={style.Formu}>
         <form
           onSubmit={handleSubmit}
-          action="https://cariocapaodequeijo.netlify.app/contact"
+          action="https://cariocapaodequeijo.netlify.app/"
           method="POST"
           id="form"
           className={style.form}
