@@ -23,7 +23,7 @@ export default function Contact() {
     e.preventDefault();
     console.log(formData);
     api
-      .post("/", {
+      .post("/contact", {
         // Outros campos do formulário
         fname: formData.fname,
         femail: formData.femail,
