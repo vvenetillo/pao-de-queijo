@@ -1,59 +1,129 @@
-.contato{
-    width:100%;
-    text-align: center;
-    background: #FFBF00;
-    color: black;
-    gap: 5px;
-    margin-top: 5px;
-  }
+.contato {
+  width: 100%;
+  text-align: center;
+  background: #ffbf00;
+  color: black;
+  gap: 5px;
+  margin-top: 5px;
+}
 
-  .formu{
-    display:flex;
-    flex-direction: column;
-  }
+.formu {
+  display: flex;
+  flex-direction: column;
+}
 
-  .form{
-    display:grid;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-    background:  linear-gradient(to bottom ,rgb(390, 934, 188),rgb(339, 180, 88));
-    padding: 40px;
-    border-radius: 10px;
-    border: 1px solid;
-    font-size: 1.2em;
-  }
+.form {
+  display: grid;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(to bottom, rgb(390, 934, 188), rgb(339, 180, 88));
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-size: 1.2em;
+}
+.line {
+  position: relative;
+  margin: 15px 0;
+}
+.name,
+.email,
+.telefone,
+.cep,
+.msg {
+  position: absolute;
+  width: 98%;
+  font-size: 18px;
+  padding: 17px 0 0 16px;
+  top: 3px;
+  left: 3px;
+  transition: all 0.3s;
+}
 
-  .input_message{
-    width: 100%;
-    heigth: 100px;
-    border: 1px solid;
-  }
+input {
+  width: 100%;
+  font-size: 18px;
+  padding: 16px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+textarea {
+  width: 100%;
+  font-size: 18px;
+  padding: 16px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  input, textarea{
-    border-radius: 5px;
-    background: white;
-  }
-  
-  .button{
-    border-radius: 15px;
-    margin-bottom: 10px;
-  }
-  
-  .button:hover{
-    background-color: yellow;
-    animation: pulsate 1s infinite;
-    box-shadow: inset 1px;
-  }
+input:focus + .name,
+input:valid + .name,
+input:focus + .email,
+input:valid + .email,
+input:focus + .telefone,
+input:valid + .telefone,
+input:focus + .cep,
+input:valid + .cep {
+  top: -20px;
+  font-size: 15px;
+  color: #222c33;
+}
+textarea:valid + .msg,
+textarea:valid + .msg {
+  top: -20px;
+  font-size: 20px;
+  color: #222c33;
+}
 
-  @keyframes pulsate {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+input,
+textarea {
+  border-radius: 5px;
+  background: white;
+}
+
+.button {
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.button:hover {
+  background-color: yellow;
+  animation: pulsate 1s infinite;
+  box-shadow: inset 1px;
+}
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+  width: 982px;
+  bottom: 900px;
+  background-color: #b62121;
+
+}
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 900px;
+  width: 100%;
+}
+
+.loading{
+  width: 100vw;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

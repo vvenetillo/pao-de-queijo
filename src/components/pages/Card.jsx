@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Button from 'react-bootstrap/Button';
 import Fade from 'react-bootstrap/Fade';
 import style from '../style/Card.module.css'
@@ -12,6 +13,7 @@ import Image from 'react-bootstrap/Image';
 
 function ImgOverlayExample() {
   const [open, setOpen] = useState(false)
+
   return (
     <>
 
