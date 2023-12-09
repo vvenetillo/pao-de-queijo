@@ -1,6 +1,6 @@
 .text_black:hover{
-    background: #ffff;
-    transition: 0.4s ease;
+    box-shadow: 0px 2px  #665e5e;
+    transition: 0.3s ease;
   }
   .img_nav{
     mix-blend-mode: multiply;
