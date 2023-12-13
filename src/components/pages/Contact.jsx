@@ -25,8 +25,6 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log(formData);
     api
       .post("/contact", {
         fname: formData.fname,
@@ -37,10 +35,8 @@ export default function Contact() {
         fbairro: endereco.bairro,
         fmensagem: formData.fmensagem,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         sendEmail()
-        console.log(sendEmail)
         sweet();
         setFormData({
           fname: "",
@@ -51,7 +47,7 @@ export default function Contact() {
           fcidade: "",
           fbairro: "",
         });
-        // window.location.reload();
+        window.location.reload();
       })
       .catch((error) => {
         console.error("Erro ao enviar o formulário:", error);
@@ -60,7 +56,6 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log(formData);
     setFormData({
       ...formData,
       [name]: value,
@@ -75,8 +70,8 @@ export default function Contact() {
     }
 
     emailjs.send("servicei7kkdbf", "template_scbhnb9", templateParams, 
-    "K4znZcO0J0FcR5qKN" ).then((res) => {
-      console.log(res);
+    "K4znZcO0J0FcR5qKN" ).then(() => {
+
     })
   }
 
@@ -108,8 +103,6 @@ export default function Contact() {
 
         if (response.ok) {
           const data = await response.json();
-
-          console.log(data);
           // Atualize o estado com os dados do CEP
           setEndereco({
             cep: data.cep,
