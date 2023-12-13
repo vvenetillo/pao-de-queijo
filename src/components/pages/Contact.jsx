@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import { useState } from "react";
+import emailjs from "@emailjs/browser"
 
 import axios from "axios";
 
@@ -24,6 +25,7 @@ export default function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     console.log(formData);
     api
       .post("/contact", {
@@ -37,6 +39,8 @@ export default function Contact() {
       })
       .then((res) => {
         console.log(res);
+        sendEmail()
+        console.log(sendEmail)
         sweet();
         setFormData({
           fname: "",
@@ -47,7 +51,7 @@ export default function Contact() {
           fcidade: "",
           fbairro: "",
         });
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((error) => {
         console.error("Erro ao enviar o formulário:", error);
@@ -63,15 +67,26 @@ export default function Contact() {
     });
   };
 
+  function sendEmail(){
+    const templateParams = {
+      from_name : formData.fname,
+      message: formData.fmensagem,
+      email: formData.femail
+    }
+
+    emailjs.send("servicei7kkdbf", "template_scbhnb9", templateParams, 
+    "K4znZcO0J0FcR5qKN" ).then((res) => {
+      console.log(res);
+    })
+  }
+
   const sweet = async () => {
     Swal.fire({
       html: "Obrigado!",
       title: "Seu formulário foi enviado com sucesso!",
       icon: "success",
-      timer: 4000,
-    }).then(
-     window.location.reload()       
-     )
+      timer: 9000,
+    })
   };
 
   // parte de api do cep e o tratamento da mesma
