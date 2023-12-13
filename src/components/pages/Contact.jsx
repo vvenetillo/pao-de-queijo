@@ -35,7 +35,8 @@ export default function Contact() {
         fbairro: endereco.bairro,
         fmensagem: formData.fmensagem,
       })
-      .then(() => {
+      .then((res) => {
+        console.log(res)
         sendEmail()
         sweet();
         setFormData({
@@ -70,8 +71,8 @@ export default function Contact() {
     }
 
     emailjs.send("servicei7kkdbf", "template_scbhnb9", templateParams, 
-    "K4znZcO0J0FcR5qKN" ).then(() => {
-
+    "K4znZcO0J0FcR5qKN" ).then((res) => {
+      sendEmail(res)
     })
   }
 
