@@ -1,6 +1,5 @@
 import Swal from "sweetalert2";
 import { useState } from "react";
-// import { FadeLoader } from "react-spinners";
 
 import axios from "axios";
 
@@ -11,8 +10,7 @@ const api = axios.create({
 });
 
 export default function Contact() {
-  // const [loading, setLoading] = useState(false);
-  // const seuComponenteRef = useRef();
+
 
   const [formData, setFormData] = useState({
     fname: "",
@@ -29,7 +27,6 @@ export default function Contact() {
     console.log(formData);
     api
       .post("/contact", {
-        // Outros campos do formulário
         fname: formData.fname,
         femail: formData.femail,
         ftelefone: formData.ftelefone,
@@ -66,30 +63,16 @@ export default function Contact() {
     });
   };
 
-  // const toggleVisibility = async () => {
-  //   setLoading(true);
-  //   setTimeout(async () => {
-  //     setLoading(false);
-  //     window.location.reload();
-  //     seuComponenteRef.current && seuComponenteRef.current.focus();
-  //   }, 9000);
-  // };
-
   const sweet = async () => {
-    Swal.fire("Bom Trabalho!", "Seu Formulário foi enviado", "success").then(
-      (res) => {
-        if (res.isConfirmed !== "") {
-          // toggleVisibility();
-        }
-      }
-    );
+    Swal.fire({
+      html: "Obrigado!",
+      title: "Seu formulário foi enviado com sucesso!",
+      icon: "success",
+      timer: 4000,
+    }).then(
+     window.location.reload()       
+     )
   };
-
-  // useEffect(() => {
-  //   if (!loading) {
-  //     seuComponenteRef.current && seuComponenteRef.current.focus();
-  //   }
-  // }, [loading]);
 
   // parte de api do cep e o tratamento da mesma
   const [cep, setCep] = useState("");
