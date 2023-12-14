@@ -1,20 +1,21 @@
+/* eslint-disable no-undef */
 import Swal from "sweetalert2";
 import { useState } from "react";
-import emailjs from "@emailjs/browser"
+import emailjs from "@emailjs/browser";
+
 
 import axios from "axios";
 
 import style from "../style/Contact.module.css";
+
 
 const api = axios.create({
   baseURL: "https://api-paodequeijo.vercel.app",
 });
 
 export default function Contact() {
-
-
   const [formData, setFormData] = useState({
-    fname: "",
+    fname: "", 
     femail: "",
     ftelefone: "",
     fcep: "",
@@ -36,8 +37,8 @@ export default function Contact() {
         fmensagem: formData.fmensagem,
       })
       .then((res) => {
-        console.log(res)
-        sendEmail()
+        console.log(res);
+        sendEmail();
         sweet();
         setFormData({
           fname: "",
@@ -63,13 +64,17 @@ export default function Contact() {
     });
   };
 
-  function sendEmail(){
-    const templateParams = {
-      from_name : formData.fname,
-      message: formData.fmensagem,
-      email: formData.femail
-    }
+  
+  // const SERVICE_ID = import.meta.env.VITE_REACT_APP_SERVICE;  
+  // const TEMPLATE_ID = import.meta.env.VITE_REACT_APP_TEMPLATE;
 
+  function sendEmail() {
+    const templateParams = {
+      from_name: formData.fname,
+      message: formData.fmensagem,
+      email: formData.femail,
+    };
+  
     emailjs.send("servicei7kkdbf", "template_scbhnb9", templateParams, 
     "K4znZcO0J0FcR5qKN" ).then((res) => {
       sendEmail(res)
@@ -82,7 +87,7 @@ export default function Contact() {
       title: "Seu formulário foi enviado com sucesso!",
       icon: "success",
       timer: 9000,
-    })
+    });
   };
 
   // parte de api do cep e o tratamento da mesma
@@ -239,7 +244,6 @@ export default function Contact() {
             <button type="submit" onClick={sweet} className={style.button}>
               Enviar
             </button>
-          
           </form>
         </div>
       </div>
