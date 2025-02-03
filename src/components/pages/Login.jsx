@@ -31,7 +31,6 @@ const Login = () => {
       setErrorMessage('Usuário ou senha inválidos!');
     }
     
-    // Aqui você pode fazer a navegação ou outras ações após o login
   };
 
   return (
@@ -70,7 +69,9 @@ const Login = () => {
             <button className="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
           </div>
         </form>
-        <button onClick={toggleTheme} className="toggle-theme">Toggle Theme</button>
+        <button onClick={toggleTheme} className="toggle-theme">
+        {theme === "dark" ? "Light Theme" : "Dark Theme"}
+      </button>
       </StyledWrapper>
     </div>
   );

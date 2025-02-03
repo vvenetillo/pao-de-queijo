@@ -56,13 +56,16 @@ const Admin = () => {
       <button onClick={toggleTheme} className="toggle-theme">
         {theme === "dark" ? "Light Theme" : "Dark Theme"}
       </button>
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Pesquisar..."
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)} // Atualiza o estado com o valor do campo de pesquisa
-      />
+      <div className="search">
+        <h3 className="search-title">Pesquisar: </h3>
+        <input
+          type="text"
+          className="search-input"
+          placeholder="cidade, bairro, nome, e-mail"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)} 
+        />
+      </div>
       <Table striped bordered hover className="admin-table">
         <thead>
           <tr>
@@ -74,7 +77,7 @@ const Admin = () => {
             <th>Cep</th>
             <th>Contato</th>
             <th>Mensagem</th>
-            <th>Data de Criação</th>
+            <th>Data de Envio</th>
           </tr>
         </thead>
         <tbody>
@@ -82,7 +85,6 @@ const Admin = () => {
             filteredContacts.map((contact, index) => (
               <tr key={contact._id}>
                 {" "}
-                {/* Usando _id como chave única */}
                 <td>{index + 1}</td>
                 <td>{contact.fname}</td>
                 <td>{contact.femail}</td>
@@ -123,6 +125,24 @@ const StyledWrapper = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 25px;
+  }
+
+  .search-title {
+    margin: 10px;
+    color: ${(props) => (props.theme === "dark" ? "#fff" : "#000")};
+  }
+
+  .search {
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+    padding: 20px;
+  }
+
+  .search-input {
+    width: 250px;
+    height: 50px;
+    border-radius: 5px;
   }
 
   .admin-table {
