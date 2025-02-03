@@ -10,7 +10,7 @@ import style from "../style/Contact.module.css";
 
 
 const api = axios.create({
-  baseURL: "https://api-paodequeijo.vercel.app",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
 export default function Contact() {

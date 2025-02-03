@@ -22,9 +22,11 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
+    const passwordLog = import.meta.env.VITE_PASSWORD
+    const usernameLog = import.meta.env.VITE_USERNAME
     // Validação dos campos
-    if (username === "admin" || password === "123456") {
+    if (username == usernameLog && password == passwordLog) {
       alert('Login bem-sucedido!');
       navigate('/admin');
     } else {
