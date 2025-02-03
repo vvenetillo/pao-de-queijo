@@ -1,5 +1,6 @@
 import Table from "react-bootstrap/Table";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; 
 import axios from "axios";
 import styled, { createGlobalStyle } from "styled-components";
 
@@ -12,18 +13,33 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Admin = () => {
+  const navigate = useNavigate(); 
   const [theme, setTheme] = useState("dark");
   const [contacts, setContacts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Verifica se o usuário está autenticado
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("auth") === "true";
+    if (!isAuthenticated) {
+      navigate("/login"); 
+    }
+  }, [navigate]);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  // Função para sair (logout)
+  const handleLogout = () => {
+    localStorage.removeItem("auth"); 
+    navigate("/login"); 
+  };
+
   // Função para buscar todos os contatos
   const fetchContacts = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/contacts");
+      const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/contacts`);
       setContacts(response.data);
     } catch (error) {
       console.error("Erro ao buscar contatos:", error);
@@ -53,9 +69,18 @@ const Admin = () => {
       <h1 className="title">Lista de Contatos</h1>
 
       <GlobalStyle theme={theme} />
+
+      {/* Botão de Troca de Tema */}
       <button onClick={toggleTheme} className="toggle-theme">
         {theme === "dark" ? "Light Theme" : "Dark Theme"}
       </button>
+
+      {/* Botão de Logout */}
+      <button onClick={handleLogout} className="logout-button">
+        Sair
+      </button>
+
+      {/* Área de Pesquisa */}
       <div className="search">
         <h3 className="search-title">Pesquisar: </h3>
         <input
@@ -66,6 +91,7 @@ const Admin = () => {
           onChange={(e) => setSearchQuery(e.target.value)} 
         />
       </div>
+
       <Table striped bordered hover className="admin-table">
         <thead>
           <tr>
@@ -84,7 +110,6 @@ const Admin = () => {
           {filteredContacts.length > 0 ? (
             filteredContacts.map((contact, index) => (
               <tr key={contact._id}>
-                {" "}
                 <td>{index + 1}</td>
                 <td>{contact.fname}</td>
                 <td>{contact.femail}</td>
@@ -98,7 +123,7 @@ const Admin = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="4">Carregando...</td>
+              <td colSpan="9">Carregando...</td>
             </tr>
           )}
         </tbody>
@@ -166,6 +191,22 @@ const StyledWrapper = styled.div`
 
   .toggle-theme:hover {
     background-color: ${(props) => (props.theme === "dark" ? "#ddd" : "#444")};
+  }
+
+  .logout-button {
+    margin-top: 20px;
+    padding: 0.5em 1.2em;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: 0.3s ease;
+  }
+
+  .logout-button:hover {
+    background-color: darkred;
   }
 `;
 

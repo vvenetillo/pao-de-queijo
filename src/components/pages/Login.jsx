@@ -23,16 +23,16 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
   
-    const passwordLog = import.meta.env.VITE_PASSWORD
-    const usernameLog = import.meta.env.VITE_USERNAME
-    // Validação dos campos
-    if (username == usernameLog && password == passwordLog) {
+    const passwordLog = import.meta.env.VITE_PASSWORD;
+    const usernameLog = import.meta.env.VITE_USERNAME;
+  
+    if (username === usernameLog && password === passwordLog) {
+      localStorage.setItem("auth", "true"); 
       alert('Login bem-sucedido!');
       navigate('/admin');
     } else {
       setErrorMessage('Usuário ou senha inválidos!');
     }
-    
   };
 
   return (
